@@ -1,0 +1,11 @@
+[
+	{
+		"id": "termcp-bridge",
+		"name": "termcp",
+		"icon": "🖥️",
+		"description": "把 termcp 接进 pi-web-ui：顶栏多一个 termcp 视图（完整终端工作区 —— 会话、标签、端口转发、审批队列），并把它的 31 个工具（SSH / SFTP / 端口转发 / 消息推送）交给 AI。termcp 实例由插件确保存在：没在跑就自己拉起，已经在跑就接管，空闲后自行退出。",
+		"descriptionEn": "Brings termcp into pi-web-ui: a top-bar termcp view (the full terminal workspace — sessions, tabs, port forwards, approval queue) plus its 31 tools (SSH / SFTP / port forwards / messaging) for the agent. The plugin makes sure a termcp instance exists: it starts one when none is running, adopts an existing one, and lets it exit when idle.",
+		"source": "backrise/pi-web-ui-contrib/plugins/termcp-bridge",
+		"homepage": "https://github.com/backrise/pi-web-ui-contrib/tree/main/plugins/termcp-bridge"
+	}
+]

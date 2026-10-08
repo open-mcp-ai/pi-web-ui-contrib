@@ -1,0 +1,45 @@
+{
+	"name": "termcp",
+	"nameEn": "termcp",
+	"version": "0.1.0",
+	"icon": "🖥️",
+	"iconSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/><polyline points=\"6 8 9 11 6 14\"/><line x1=\"12\" y1=\"14\" x2=\"17\" y2=\"14\"/><line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"/><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"/></svg>",
+	"description": "把 termcp 接进 pi-web-ui：顶栏多一个 termcp 视图（完整的终端工作区 —— 会话、标签、端口转发、审批队列），并把它的 31 个工具（SSH / SFTP / 端口转发 / 消息推送）交给 AI。termcp 实例由插件确保存在：没在跑就自己拉起，已经在跑就接管，空闲后自行退出。",
+	"descriptionEn": "Brings termcp into pi-web-ui: a top-bar termcp view (the full terminal workspace — sessions, tabs, port forwards, approval queue) plus its 31 tools (SSH / SFTP / port forwards / messaging) for the agent. The plugin makes sure a termcp instance exists: it starts one when none is running, adopts an existing one, and lets it exit when idle.",
+	"apiVersion": 2,
+	"view": true,
+	"permissions": ["http", "ui"],
+	"settings": [
+		{
+			"key": "port",
+			"type": "number",
+			"label": "termcp 端口",
+			"default": 18765,
+			"min": 1,
+			"max": 65535,
+			"hint": "termcp 监听的本地端口（默认 18765）。改了这里，插件拉起的实例也用新端口，挂载路径同步指向它。"
+		},
+		{
+			"key": "prefix",
+			"type": "text",
+			"label": "代理挂载路径",
+			"default": "/termcp",
+			"hint": "在这个路径下挂载 termcp，例如 /termcp 对应 http://localhost:8787/termcp/。需要 termcp v0.2.7 及以上（页面 URL 按挂载前缀解析）。"
+		},
+		{
+			"key": "termcpBin",
+			"type": "text",
+			"label": "termcp 可执行文件",
+			"default": "termcp",
+			"hint": "留空用 PATH 里的 termcp。装了但不在 PATH 里时填绝对路径，例如 /Users/you/.bin/termcp。"
+		},
+		{
+			"key": "mcpMode",
+			"type": "select",
+			"label": "AI 工具接入方式",
+			"options": ["auto", "always", "never"],
+			"default": "auto",
+			"hint": "auto：检测到别处已经接过 termcp 就不重复接（避免工具重名）；always：总是由本插件接入；never：只保留视图，不碰 mcp.json。"
+		}
+	]
+}
